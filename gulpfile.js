@@ -27,11 +27,6 @@ gulp.task('script', function () {
         .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('audio', function () {
-    return gulp.src('./assets/**/*.mp3')
-        .pipe(gulp.dest('dist'));
-});
-
 gulp.task('mediapipe', function () {
     return gulp.src('./node_modules/@mediapipe/**/*')
         .pipe(gulp.dest('dist/static/mediapipe/'))
@@ -46,6 +41,6 @@ gulp.task('jest', function () {
     return gulp.src('./src/*.test.js').pipe(jest());
 });
 
-gulp.task('build', gulp.series("clean",gulp.parallel("jest","styles", "pug", "audio", "script", "mediapipe")));
+gulp.task('build', gulp.series("clean",gulp.parallel("jest","styles", "pug", "script", "mediapipe")));
 
 gulp.task('default', gulp.series('build'))

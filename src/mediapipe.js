@@ -19,33 +19,6 @@ spinner.ontransitionend = () => {
   spinner.style.display = 'none';
 };
 
-function angle2partial(angle) {
-  if(angle < 10) {
-    return 6 ;
-  }
-  else if(angle < 20) {
-    return 5
-  }
-  else if(angle < 30) {
-    return 4
-  }
-  else if(angle < 40) {
-    return 3
-  }
-  else if(angle < 50) {
-    return 2
-  }
-  return 1;
-}
-
-function angle2valve(angle, valve) {
-  if(angle > 90) {
-    window.trumpetAudio.valveDown(valve);
-  }
-  else {
-    window.trumpetAudio.valveUp(valve);
-  }
-}
 
 function onResults(results) {
   // Hide the spinner.
@@ -87,15 +60,10 @@ function onResults(results) {
         setDisplayValue('rh_index', rightHand.indexFlex);
         setDisplayValue('rh_middle', rightHand.middleFlex);
         setDisplayValue('rh_ring', rightHand.ringFlex);
-        angle2valve(rightHand.indexFlex, 1);
-        angle2valve(rightHand.middleFlex, 2);
-        angle2valve(rightHand.ringFlex, 3);
       }
       if(leftHand != null) {
         setDisplayValue('lh_index2thumb', leftHand.thumbIndexDist);
         setDisplayValue('lh_middle', leftHand.middleFlex);
-        window.trumpetAudio.blowing = leftHand.thumbIndexDist < 0.1;
-        window.trumpetAudio.partial = angle2partial(leftHand.middleFlex);
       }
     }
   }
@@ -124,14 +92,38 @@ camera.start();
 new ControlPanel(controlsElement, {
       selfieMode: true,
       maxNumHands: 2,
-      minDetectionConfidence: 0.9,
-      minTrackingConfidence: 0.9,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
       angle: 90
     })
     .add([
       new StaticText({title: 'MediaPipe Hands'}),
       fpsControl,
       new Toggle({title: 'Selfie Mode', field: 'selfieMode'}),
+      new SourcePicker({
+        onSourceChanged: () => {
+          hands.reset();
+        },
+        onFrame:
+            async (input, size) => {
+              const aspect = size.height / size.width;
+              let width, height;
+              if (window.innerWidth > window.innerHeight) {
+                height = window.innerHeight;
+                width = height / aspect;
+              } else {
+                width = window.innerWidth;
+                height = width * aspect;
+              }
+              canvasElement.width = width;
+              canvasElement.height = height;
+              await hands.send({image: input});
+            },
+        examples: {
+          videos: [],
+          images: [],
+        }
+      }),
       new Slider(
           {title: 'Max Number of Hands', field: 'maxNumHands', range: [1, 4], step: 1}),
       new Slider({

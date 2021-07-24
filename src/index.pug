@@ -8,8 +8,6 @@ html(lang="eng")
        script(src='static/mediapipe/control_utils/control_utils.js' crossorigin='anonymous')
        script(src='static/mediapipe/drawing_utils/drawing_utils.js' crossorigin='anonymous')
        script(src='static/mediapipe/hands/hands.js' crossorigin='anonymous')
-       link(rel="stylesheet", href="trumpet.css")
-       link(rel="stylesheet", href="score.css")
        link(rel='stylesheet' href='./mediapipe.css')
     body
         .container
@@ -29,38 +27,6 @@ html(lang="eng")
                     a(href='https://solutions.mediapipe.dev/hands')
                        | Click here for more info
         .control-panel
-        #container
-            #main-pipe
-                .filler
-            #lead-pipe
-            #receiver
-            #mouthpiece-stem
-            #mouthpiece-cup
-            #bell
-                .bottom-flare
-                .top-flare
-            #valves
-                .valve.one
-                    .bottom-cap
-                    .top-cap
-                    .piston
-                    .button
-                .valve.two
-                    .bottom-cap
-                    .top-cap
-                    .piston
-                    .button
-                .valve.three
-                    .bottom-cap
-                    .top-cap
-                    .piston
-                    .button
-
-            - const clef="\ue050"
-            - const note="\ue0a2"
-            .score
-                span.clef #{clef}
-                span(id='note').tonic.c4 #{note}
+    script(src='theremin.js')
     script(src='hand.js')
-    script(src="trumpet.js")
     script(src='mediapipe.js')
