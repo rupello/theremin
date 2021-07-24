@@ -1,0 +1,36 @@
+{
+  "name": "trumpetar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "trumpet.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rupello/trumpetar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rupello/trumpetar/issues"
+  },
+  "homepage": "https://github.com/rupello/trumpetar#readme",
+  "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1620247984",
+    "@mediapipe/control_utils": "^0.6.1626288889",
+    "@mediapipe/drawing_utils": "^0.3.1620248257",
+    "@mediapipe/hands": "^0.3.1620248595"
+  },
+  "devDependencies": {
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-filter": "^7.0.0",
+    "gulp-jest": "^4.0.4",
+    "gulp-pug": "^5.0.0",
+    "gulp-stylus": "^2.7.0",
+    "gulp-watch": "^5.0.1",
+    "jest": "^27.0.6"
+  }
+}

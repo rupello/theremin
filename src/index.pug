@@ -1,0 +1,66 @@
+doctype html
+html(lang="eng")
+    head
+       meta(charset='UTF-8')
+       meta(charset='utf-8')
+       link(rel='stylesheet' type='text/css' href='static/mediapipe/control_utils/control_utils.css' crossorigin='anonymous')
+       script(src='static/mediapipe/camera_utils/camera_utils.js' crossorigin='anonymous')
+       script(src='static/mediapipe/control_utils/control_utils.js' crossorigin='anonymous')
+       script(src='static/mediapipe/drawing_utils/drawing_utils.js' crossorigin='anonymous')
+       script(src='static/mediapipe/hands/hands.js' crossorigin='anonymous')
+       link(rel="stylesheet", href="trumpet.css")
+       link(rel="stylesheet", href="score.css")
+       link(rel='stylesheet' href='./mediapipe.css')
+    body
+        .container
+            video.input_video
+            canvas.output_canvas(width='1280px' height='720px')
+            .loading
+                .spinner
+                .message
+                   | Loading
+            a.abs.logo(href='http://www.mediapipe.dev' target='_blank')
+                div(style='display: flex;align-items: center;bottom: 0;right: 10px;')
+                    img.logo(src='logo_white.png' alt='' style='\
+             height: 50px;')
+                    span.title MediaPipe
+            .shoutout
+                div
+                    a(href='https://solutions.mediapipe.dev/hands')
+                       | Click here for more info
+        .control-panel
+        #container
+            #main-pipe
+                .filler
+            #lead-pipe
+            #receiver
+            #mouthpiece-stem
+            #mouthpiece-cup
+            #bell
+                .bottom-flare
+                .top-flare
+            #valves
+                .valve.one
+                    .bottom-cap
+                    .top-cap
+                    .piston
+                    .button
+                .valve.two
+                    .bottom-cap
+                    .top-cap
+                    .piston
+                    .button
+                .valve.three
+                    .bottom-cap
+                    .top-cap
+                    .piston
+                    .button
+
+            - const clef="\ue050"
+            - const note="\ue0a2"
+            .score
+                span.clef #{clef}
+                span(id='note').tonic.c4 #{note}
+    script(src='hand.js')
+    script(src="trumpet.js")
+    script(src='mediapipe.js')
